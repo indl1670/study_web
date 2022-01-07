@@ -1,2 +1,2 @@
 # Thinking Potato's private web study
-I referred to 'https://opentutorials.org/'
+I referred to PNU Web Class
