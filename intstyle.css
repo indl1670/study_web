@@ -1,0 +1,23 @@
+#name, footer {
+    padding: 30px;
+    background-color: cornflowerblue;
+    color: white;
+    text-align: center;
+}
+nav {
+    margin-top: -20px;
+    padding: 20px;
+    background-color: lavender;
+    text-align: center;
+}
+#a, #c {
+    border: solid 5px;
+    border-left-width: 20px;
+    border-color: darkseagreen;
+
+}
+#b, #d {
+    border: solid 5px;
+    border-left-width: 20px;
+    border-color: darkslategray;
+}
