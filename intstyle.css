@@ -1,13 +1,13 @@
 #name, footer {
     padding: 30px;
-    background-color: cornflowerblue;
+    background-color: darkslategray;
     color: white;
     text-align: center;
 }
 nav {
-    margin-top: -20px;
+    margin-top: -30px;
     padding: 20px;
-    background-color: lavender;
+    background-color: darkseagreen;
     text-align: center;
 }
 #a, #c {
