@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML-FORM</title>
+        <style>
+            img {
+                width: 100px;
+            }
+            .box1 {
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                width: 480px;
+                background-color: darkslategrey;
+                border-radius: 5px;
+            }
+            h2 {
+                text-align: center;
+                color: white;
+            }
+            .box2 {
+                width: 500px;
+            }
+            h3 {
+                padding: 5px;
+                background-color: rgb(140, 173, 173);
+                border-radius: 5px;
+            }
+            section {
+                text-align: center;
+                width: 45%;
+                float: left;
+            }
+            #buttons {
+                padding-top: 30px;
+                clear: left;
+            }
+            button {
+                background-color: darkslategrey;
+                width: 240px;
+                color: white;
+            }
+        </style>
+        <script>
+            function show() {
+                var name = "";
+                var fruit = "";
+                name = box2_name.txt_name.value;
+                fruit = box2_fruit.rdo_sel.value;
+                
+                alert(name + "님은\n" + fruit + "를(을)\n좋아하십니다.")
+            }
+        </script>
+    </head>
+    <body>
+        <div class="box1">
+            <h2>당신이 좋아하는 과일을 선택해 보세요.</h2>
+        </div>
+        <div class="box2">
+            <form name="box2_name">
+                <p id="name">
+                    <h3>성명</h3>
+                    <input type="text" name="txt_name" id="txt_name" placeholder="성명 입력">
+                </p>
+            </form>
+            <p id="psswd">
+                <h3>비밀번호</h3>
+                <input type="text" name="txt_psswd" id="txt_psswd" placeholder="비밀번호 입력">
+            </p>
+            <form name="box2_fruit">
+                <p id="sel">
+                    <h3>좋아하는 과일을 선택하세요</h3>
+                    <section id="s1"><input type="radio" name="rdo_sel" id="app" value="사과"><img src="img/img3.png"></section>
+                    <section id="s2"><input type="radio" name="rdo_sel" id="ban" value="바나나"><img src="img/img2.png"></section>
+                    <section id="s3"><input type="radio" name="rdo_sel" id="str" value="딸기"><img src="img/img1.png"></section>
+                    <section id="s4"><input type="radio" name="rdo_sel" id="wat" value="수박"><img src="img/img4.png"></section>
+                </p>
+            </form>
+        </div>
+        <div id="buttons">
+            <p id="btn">
+                <button type="submit" onclick="show()">결과보기</button>
+                <button type="reset">취소</button>
+            </p>
+        </div>
+    </body>
+</html>
