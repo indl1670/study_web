@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple_Calculator</title>
+        <style>
+            .title {
+                width: 700px;
+                text-align: center;
+                background-color: lightslategrey;
+                color: white;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                border-radius: 20px;
+            }
+            .calc {
+                margin-top: 10px;
+                width: 690px;
+                border: 5px solid lightslategray;
+                height: 200px;
+            }
+            .res {
+                margin-top: 10px;
+                width: 690px;
+                border: 5px solid lightslategray;
+                height: 50px;
+            }
+            .fom {
+                margin-left: 20px;
+                padding-top: 30px;
+                color: red;
+            }
+            div {
+                clear: left;
+            }
+            label {
+                float: left;
+                padding: 20px;
+            }
+            button {
+                width: 50px;
+                height: 30px;
+                margin-right: 10px;
+                background-color: lightslategray;
+                color: white;
+                border: none;
+            }
+            #res {
+                margin-top: 10px;
+                width: 690px;
+                border: 5px solid lightslategray;
+                height: 100px;
+            }
+            #num3 {
+                margin-top: 10px;
+                margin-left: 20px;
+                border: none;
+                text-decoration: none;
+            }
+        </style>
+        <script>
+            function show() {
+                //1. 첫번째 텍스트 상자에 값이 있는지 확인
+                //값이 없으면 다시 입력
+                if(form.num1.value == '') {
+                    alert('숫자 1을 입력하세요.')
+                    form.num1.focus();
+                    return;
+                }
+                //2. 두번째 텍스트 상자에값이 있는지 확인
+                //값이 없으면 다시 입력
+                if(form.num2.value == '') {
+                    alert('숫자 2를 입력하세요.')
+                    form.num2.focus();
+                    return;
+                }
+                //1. 첫번째 텍스트의 값을 가져오기
+                var num1 = parseInt(form.num1.value);
+                //2. 두번째 텍스트의 값을 가져오기
+                var num2 = parseInt(form.num2.value);
+                //3. 가져온 값을 계산
+                var num3 = 0;
+                //연산자 결정
+                var op = form.op.value;
+                //연산자에 따라 계산
+                switch(op) {
+                    case '+' : num3=num1+num2;
+                    break;
+                    case '-' : num3=num1-num2;
+                    break;
+                    case '*' : num3=num1*num2;
+                    break;
+                    case '/' : num3=num1/num2;
+                    break;
+                    default: alert("연산자를 선택해주세요");
+                    return;
+                }
+                form.num3.value = num3;
+            }
+            function visualize() {
+                if (form.num3.value=='') {
+                    form.num3.value="수식을 작성할 수 없습니다."
+                    return;
+                }
+                //수식 여부
+                //체크박스가 체크가 되었는지 확인
+                if(form.ck.checked == true) {
+                    //수식 만들기
+                    var str = '';
+                    //+는 연결 연산자
+                    str = form.num1.value + form.op.value + form.num2.value  + '=' + form.num3.value;
+                    form.num3.value=str;
+                }
+                else {
+                    form.num3.value = '';
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form name="form">
+        <div class="title">
+            <h2>간단한 계산기</h2>
+        </div>
+            <div class="calc">
+                <label><input type="text" name="num1" id="num1" placeholder="숫자 1"></label>
+                <label>
+                        <input type="radio" name = "op" value="+">+<br>
+                        <input type="radio" name = "op" value="-">-<br>
+                        <input type="radio" name = "op" value="*">*<br>
+                        <input type="radio" name = "op" value="/">/<br>
+                </label>
+                <label><input type="text" name="num2" id="num2" placeholder="숫자 2"></label>
+                <label><button type="submit" onclick="show()">=</button><button type="reset">취소</button></label>
+                <div class="fom">
+                    <input type="checkbox" name="ck" onclick="visualize()">수식포함
+                </div> 
+            </div>
+            <div id="res" name="res">
+                <input type="text" id='num3' name='num3' readonly placeholder='결과'>
+            </div>
+        </form>
+    </body>
+</html>
