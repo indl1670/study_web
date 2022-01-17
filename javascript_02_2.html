@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>자바스크립트계산기</title>
+
+<style>
+	.box1 {
+		border-radius: 10px;
+		border: 2px solid lightslategray;
+		background-color : lightslategray;
+		padding: 10px; 
+		margin : 10px;
+		width: 400px;
+		height: 20px; 
+		color : white;
+		text-align : center;
+	}
+	#box2 { 
+		border: 2px solid lightslategray;
+		padding: 10px; 
+		margin : 10px;
+		width: 400px; 
+		text-align : left;
+	}
+	.box3 {
+		border-radius: 10px;
+		border: 2px solid lightslategray;
+		padding: 10px; 
+		margin : 10px;
+		width: 400px;
+		height:50px; 
+		text-align : center;
+	}
+	form { 
+		padding-bottom : 20px;
+		text-align : center;
+	} 
+    input {
+		width : 40px;
+		height : 40px;
+	} 
+	#msg {
+		width : 97%;
+		height : 40px;
+		border: 1px solid lightslategray;
+		text-align : right;
+	}
+</style>
+<script>
+	var flag=false;
+	function ClearLast() {
+		var str = document.getElementById('msg').innerHTML;
+		str = str.substr(0, str.length-1);
+		document.getElementById('msg').innerHTML = str;
+	}
+	function Clear() {
+		document.getElementById('msg').innerHTML = '';
+	}
+	function Make(x) {
+		var str = document.getElementById('msg').innerHTML;
+		str = str + x;
+		document.getElementById('msg').innerHTML = str;
+	}
+	function Do() {
+		var str = document.getElementById('msg').innerHTML; //evalMake의 str과 다름
+		str=eval(str);
+		document.getElementById('msg').innerHTML = str;
+	}
+</script>
+</head>
+<body>
+	<div class="box1">
+		자바스크립트 계산기
+	</div>
+	<div id ="box2">
+		<div id="msg"></div>
+		<form name="myform">
+			<p> 
+			<input type="button" value=" CE " onclick="ClearLast();">
+			<input type="button" value=" C "  onclick="Clear();">
+			<input type="button" value=" . "  onclick="Make('.');">
+			<input type="button" value=" / " onclick="Make('/');">
+			</p>
+			<p> 
+			<input type="button" value=" 7 " onclick="Make('7');">
+			<input type="button" value=" 8 " onclick="Make('8');">
+			<input type="button" value=" 9 " onclick="Make('9');">
+			<input type="button" value=" X " onclick="Make('*');">
+			</p>
+			<p> 
+			<input type="button" value=" 4 " onclick="Make('4');">
+			<input type="button" value=" 5 " onclick="Make('5');">
+			<input type="button" value=" 6 " onclick="Make('6');">
+			<input type="button" value=" - " onclick="Make('-');">
+			</p>
+			<p> 
+			<input type="button" value=" 1 " onclick="Make('1');">
+			<input type="button" value=" 2 " onclick="Make('2');">
+			<input type="button" value=" 3 " onclick="Make('3');">
+			<input type="button" value=" + " onclick="Make('+');">
+			</p>
+			<p> 
+			<input type="button" value=" ( " onclick="Make('(');">
+			<input type="button" value=" 0 " onclick="Make('0');">
+			<input type="button" value=" ) " onclick="Make(')');">
+			<input type="button" value=" = " onclick="Do()">
+			</p>
+		</form>
+	</div>
+</body>
+</html>
