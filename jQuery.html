@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery DOM Control</title>
+        <style>
+            form {
+                width: 600px;
+                border: 2px solid lightslategray;
+            }
+            .box1 {
+                margin-left: 50px;
+                margin-top: 20px;
+                background-color: lightslategray;
+                width: 500px;
+                text-align: center;
+                border: 1px solid lightslategray;
+                border-radius: 10px;
+                color: white;
+            }
+            .box2 {
+                margin-top: 10px;
+                margin-left: 95px;
+                text-align: center;
+            }
+            .card {
+                width : 45px;
+                height :50px;
+                font-size : 30px;
+                text-align : center;
+                border: 2px solid lightslategray;
+                border-radius: 5px;
+                float : left ;
+                margin : 5px;
+            }
+            #btn {
+                margin-left: 50px;
+                width: 500px;
+                text-align: center;
+            }
+            input {
+                background-color: white;
+                width: 100px;
+                border: 3px solid lightslategray;
+            }
+            input:hover {
+                background-color: lightslategray;
+                color: white;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            var numg = 0;
+            var flag = false;
+            $(document).ready(function(){
+                //카드 랜덤숫자 생성
+                $("#bt1").click(function(){
+                    for(var i=1; i<=14; i++) {
+                        var num = Math.floor(Math.random()*99)+1;
+                        $("#c"+i).text(num);  
+                    }
+                    $(".card").css({"background-color":"white", "color":"black"});
+                    flag = true;
+                    //console.log(flag)
+                });
+                //mouseenter시 홀/짝 구분
+                $(".card").mouseenter(function(){
+                    //console.log(numg)
+                    if(flag == false) return;
+                    numg = parseInt($(this).text());
+                    //console.log(numg)
+                    if(numg%2==0) {
+                        $(this).css({"background-color":"red", "color":"white"});
+                        $(this).text("짝");
+                        }
+                    else {
+                        $(this).css({"background-color":"blue", "color":"white"});
+                        $(this).text("홀");
+                    }
+                });
+                //mouseleave시 원래대로 설정
+                $(".card").mouseleave(function(){
+                    if(flag == false) return;
+                        $(this).css({"background-color":"white", "color":"black"})
+                        $(this).text(numg);
+                        //console.log(numg)
+                    });	
+                //초기화면 설정
+                $("#bt2").click(function(){
+                    $(".card").text('');
+                    $(".card").css({"background-color":"white", "color":"black"})
+                    flag = false;
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form name="myform">
+            <div class="box1">
+                <h2>jQuery DOM 제어</h2>
+            </div>
+            <div class="box2">
+                <div class = "card" id="c1"></div> 
+                <div class = "card" id="c2"></div> 
+                <div class = "card" id="c3"></div> 
+                <div class = "card" id="c4"></div> 
+                <div class = "card" id="c5"></div> 
+                <div class = "card" id="c6"></div> 
+                <div class = "card" id="c7"></div>  
+                <div style="clear:both"></div>
+                <div class = "card" id="c8"></div> 
+                <div class = "card" id="c9"></div> 
+                <div class = "card" id="c10"></div> 
+                <div class = "card" id="c11"></div> 
+                <div class = "card" id="c12"></div> 
+                <div class = "card" id="c13"></div> 
+                <div class = "card" id="c14"></div> 
+                <div style="clear:both"> </div>
+            </div>
+            <p id="btn">
+                <input type="button" value="번호생성" id="bt1">
+                <input type="button" value="번호지우기" id="bt2">
+            </p>
+        </form>
+    </body>
+</html>
