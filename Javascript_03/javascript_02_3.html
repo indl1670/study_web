@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Multiplication Table</title>
+        
+        <style>
+            .box1 {
+                border-radius: 10px;
+                border: 2px solid lightslategray;
+                background-color : lightslategray;
+                padding: 10px; 
+                margin : 10px;
+                width: 400px;
+                height: 20px; 
+                color : white;
+                text-align : center;
+            }
+            .rdan {
+                margin-top: 80px; 
+                font-size : 40px;
+                text-align : center;
+            }
+            .box2 {		 
+                padding: 10px; 
+                margin : 10px;
+                width: 400px; 
+                text-align : center;
+            } 
+            select, input {
+                width: 70px;
+                height: 30px;
+                text-align: center;
+                background-color: white;
+                border: 2px solid lightslategray;
+            }
+            input:hover {
+                background-color: lightslategray;
+                color: white;
+            }
+            #msg {
+                width : 400px;
+                height : 200px;
+                margin : 10px;
+                padding: 10px;  
+                border: 3px solid lightslategray;
+                font-size : 14px;
+                color : black;
+                text-align : center;
+            }
+            img {
+                width : 50px;
+                height :50px;
+            }
+        </style>
+        <script>
+            function show() {
+                if (myform.mul_dan.value=='') {
+                    alert("단을 선택해주세요.");
+                    return;
+                }
+                var num = myform.mul_dan.value;
+                var str = "";
+                var i = 1;
+                for (i=1; i<10; i++) {
+                    str = str + num + "x" + i + "=" + (num*i) + "<br>";
+                }
+                document.getElementById("msg").innerHTML = str;
+            }
+            function showRandom() {
+                var str = "";
+                var dan = Math.floor(Math.random()*8) + 2; //2단에서 9단까지
+                var i = Math.floor(Math.random()*9) + 1; //1에서 9까지
+                var ans = dan * i;
+                var ans10 = Math.floor(ans/10);
+                var ans1 = ans%10;
+                // str = "<div class='rdan'>" + dan + "x" + i + "=" + (dan*i) + "</div>"; //div일때 style에서 .rdan을 #msg > div로 변경
+                str = str + "<img src='./img/" + dan + ".png'>";
+                str = str + "<img src='./img/x.png'>";
+                str = str + "<img src='./img/" + i + ".png'>";
+                str = str + "<img src='./img/equal.png'>";
+                if(ans10 == 0) {
+                    str = str + "<img src='./img/blank.png'>";
+                    str = str + "<img src='./img/" + ans1 + ".png'>"; 
+                }
+                else {
+                    str = str + "<img src='./img/" + ans10 + ".png'>";
+                    str = str + "<img src='./img/" + ans1 + ".png'>";
+                }
+                document.getElementById("msg").innerHTML = str;
+            }
+            function showclear() {
+                myform.reset();
+                document.getElementById('msg').innerHTML = '';
+            }
+        </script>
+    </head>
+    <body>
+        <form name="myform">
+            <div class="box1">
+                Multiplication Table
+            </div>
+            <div class="box2">
+                <select name="mul_dan">
+                    <option value="">단선택</option>
+                    <option value="2">2단</option>
+                    <option value="3">3단</option>
+                    <option value="4">4단</option>
+                    <option value="5">5단</option>
+                    <option value="6">6단</option>
+                    <option value="7">7단</option>
+                    <option value="8">8단</option>
+                    <option value="9">9단</option>
+                </select>
+                <input type="button" value="단보기" onclick="show();">
+                <input type="button" value="랜덤보기" onclick="showRandom();">
+                <input type="button" value="지우기" onclick="showclear();">
+            </div>
+            <div id="msg"></div>
+        </form>
+    </body>
+</html>
