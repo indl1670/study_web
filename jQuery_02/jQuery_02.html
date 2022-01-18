@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RCP</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            form {
+                border: 2px solid lightslategray;
+                width: 450px;
+            }
+            img {
+                padding: 5px;
+                width : 80px;
+                height :80px;
+            }
+            #i1:hover, #i2:hover, #i3:hover {
+                border: 2px solid rgb(192, 91, 91);
+            }
+            .box1 {
+                border-radius: 10px;
+                border: 2px solid lightslategray;
+                background-color : lightslategray;
+                padding: 10px; 
+                margin : 10px;
+                width: 400px;
+                height: 20px; 
+                color : white;
+                text-align : center;
+            }
+            .box2 {		 
+                padding: 10px; 
+                margin : 10px;
+                width: 400px; 
+                text-align : center;
+            }
+            #bt1 {
+                background-color: white;
+                border: 2px solid lightslategray;
+            }
+            #bt1:hover {
+                background-color: lightslategray;
+                color: white;
+            }
+            #msgimg {
+                width : 400px; 
+                margin : 10px;
+                padding: 10px;  
+                border: 3px solid lightslategray;
+                text-align : center;
+            }
+            #msg {
+                width : 400px;
+                height : 40px;
+                margin : 10px;
+                padding: 10px;  
+                border: 3px solid lightslategray;
+                font-size : 14px;
+                color : black;
+                text-align : center;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            var total = 0;
+            var win = 0;
+            //사용자 가위바위보 선택 출력
+            $(document).ready(function(){
+                $("p>img").click(function(){
+                    total = total + 1;
+                    var userimg = $(this).attr("src");
+                    $("#img1").attr("src", userimg);
+                    userimg = userimg.replace("./img/", "");
+                    userimg = userimg.replace(".png", "");
+                    var user = 0;
+                    switch(userimg) {
+                        case "scissors" : user = 1;
+                        break;
+                        case "rock" : user = 2;
+                        break;
+                        case "paper" : user = 3;
+                        break;
+
+                    }
+                    //컴퓨터 가위바위보 선택 출력
+                    var com = Math.floor(Math.random()*3) + 1;
+                    var comimg = "./img/";
+                    switch(com) {
+                        case 1 : comimg = comimg + "scissorscom.png"; break;
+                        case 2 : comimg = comimg + "rockcom.png"; break;
+                        case 3 : comimg = comimg + "papercom.png"; break;
+
+                    } console.log(comimg);
+                    $("#img2").attr("src", comimg);
+                    //승패 결과 판단
+                    var str = '';
+                    if(user == com) {
+                        str = str + "무승부<br>"
+                    }
+                    else if((user == 1 && com == 3)||(user == 2 && com == 1)||(user == 3 && com == 2)) {
+                        str = str + "승<br>"
+                        win ++;
+                    }
+                    else {
+                        str = str + "패<br>"
+                    }
+                    //전체 횟수, 이긴 횟수, 확률 결과 출력
+                    var rate = (win/total)*100;
+                    str = str + "전체 횟수: " + total + " 이긴 횟수: " + win + " (승률 :" + rate.toFixed(2) + "%)";
+                    $("#msg").html(str);
+
+                });
+                //다시하기 클릭 시 전체 변수 초기화
+                $("#bt1").click(function(){
+                $("#img1").attr("src", "./img/q.png");
+                $("#img2").attr("src", "./img/q.png");
+                $("#msg").html('');
+                total = 0;
+                win = 0;
+                rate = 0;
+                });
+            });
+        </script>
+    </head>
+<body>
+<form name="myform">
+	<div class="box1">
+		가위! 바위! 보!
+	</div>
+	<div class="box2">
+		<p>
+            <img src="./img/scissors.png" id="i1">
+            <img src="./img/rock.png" id="i2">
+            <img src="./img/paper.png" id="i3">
+		</p>
+		<p>
+		    <input type="button" value="다시하기" id="bt1">
+		</p>
+	</div>
+	<div id="msgimg">
+		 <img src="./img/q.png" id="img1"> 
+		 <img src="./img/vs.png">
+		 <img src="./img/q.png" id="img2">
+	</div>
+	<div id="msg"></div>
+</form>
+</body>
+</html>
